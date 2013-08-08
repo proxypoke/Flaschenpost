@@ -4,7 +4,10 @@
     <head>
     {% block html_head %}
         <meta charset="utf-8">
-        <title> {% block html_head_title %} {% endblock %} </title>
+        <title> {% block html_head_title %}
+            {% if page_title %}{{ page_title|e }}{% endif %}
+            {% endblock %}
+        </title>
     {% endblock html_head %}
     </head>
 
