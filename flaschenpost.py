@@ -20,8 +20,12 @@ asciidoc = AsciiDocAPI()
 
 
 def index_posts(dir):
-    return map(lambda x: os.path.splitext(x)[0], filter(
-        lambda x: x.endswith(".txt"), os.listdir(dir)))
+    files = [f for f in os.listdir(dir) if f.endswith(".txt")]
+    print(files)
+    files.sort(lambda x, y: cmp(os.path.getctime(x), os.path.getctime(y)),
+               reverse=True)  # reverse sorting for newest first
+    print(files)
+    return map(lambda x: os.path.splitext(x)[0], files)
 
 
 @site.route("/")
