@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>Post index</title>
+    </head>
+    <body
+        <ul class="posts">
+        {% for post in posts %}
+        <li> <a href='{{ url_for("serve_post", title=post) }}'>{{post}}</a>
+        {% endfor %}
+        </ul>
+    </body>
+</html>

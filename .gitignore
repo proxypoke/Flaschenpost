@@ -1,7 +1,2 @@
 *.md
 *.py[co]
-*.html
-*.css
-
-.*
-!.gitignore
