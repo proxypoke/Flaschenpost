@@ -53,11 +53,14 @@ def serve_post(title):
         abort(404)
     out = StringIO.StringIO()
     try:
+        asciidoc.options("--no-header-footer")
         # TODO: cache generated files
         asciidoc.execute(file, out)
     except AsciiDocError:
         abort(500)
-    return out.getvalue()
+    blog_title = site.config.get("BLOG_TITLE", "Just Another Blog")
+    return render_template("post.html", post=out.getvalue(), post_title=title,
+                           blog_title=blog_title, recent_posts=recent_posts())
 
 
 if __name__ == "__main__":
