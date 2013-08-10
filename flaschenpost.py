@@ -10,7 +10,7 @@
 import StringIO
 import os
 
-from flask import Flask, abort, render_template
+from flask import Flask, abort, render_template, redirect, url_for
 from asciidocapi import AsciiDocAPI, AsciiDocError
 
 site = Flask(__name__)
@@ -34,7 +34,7 @@ def recent_posts(n=10):
 
 @site.route("/")
 def index():
-    return "Nothing to see here, move along"
+    return redirect(url_for("serve_post_index"))
 
 
 @site.route("/post/")
