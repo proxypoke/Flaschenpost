@@ -1,19 +1,64 @@
 <!doctype html>
 <html lang="en">
-    
-    <head>
-    {% block html_head %}
-        <meta charset="utf-8">
-        <title> {% block html_head_title %}
-            {% if page_title %}{{ page_title|e }}{% endif %}
-            {% endblock %}
-        </title>
-    {% endblock html_head %}
-    </head>
 
-    <body>
-    {% block body %}
-    {% endblock body %}
-    </body>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
+<style type="text/css">
+
+section#content {
+    float: left; }
+
+footer {
+    text-align:center;
+    font-size: 11px;
+    clear: both;
+    float: center; }
+
+aside {
+    text-align: right;
+    font-size: 11px;
+    float: right; }
+
+ul#recent_posts {
+    list-style-type: none; }
+   
+</style>
+
+<head>
+{% block html_head %}
+    <meta charset="utf-8">
+    <title> {% block html_head_title %}
+        {% if page_title %}{{ page_title|e }}{% endif %}
+        {% endblock %}
+    </title>
+{% endblock html_head %}
+</head>
+
+<body>
+    <header>
+    {% if page_title %}<h1>{{ page_title|e }}</h1>{% endif %}
+    </header>
+
+    <section id="content"> 
+    {% block content %}
+    {% endblock content %}
+    </section>
+
+    <aside class="sidebar">
+        <h1>Recent Posts</h1>
+        <ul id="recent_posts" class="posts">
+        {% for rpost in recent_posts %}
+        <li> <a href='{{ url_for("serve_post", title=rpost) }}'>{{rpost}}</a>
+        {% endfor %}
+        </ul>
+
+        <a href='{{ url_for("serve_post_index") }}'>See all posts</a>
+    </aside>
+
+    <footer>
+    Content on this blog is Free as in Speech. There is no Copyright. Intellectual Property does not exist. Give attribution where due.
+    </footer>
+
+</body>
     
 </html>

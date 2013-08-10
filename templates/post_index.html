@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% set page_title = 'Post Index' %}
-{% block body %}
+{% block content %}
         <ul class="posts">
         {% for post in posts %}
         <li> <a href='{{ url_for("serve_post", title=post) }}'>{{post}}</a>
         {% endfor %}
         </ul>
-{% endblock body %}
+{% endblock content %}
 </html>
