@@ -28,7 +28,7 @@ ul#recent_posts {
 {% block html_head %}
     <meta charset="utf-8">
     <title> {% block html_head_title %}
-        {% if page_title %}{{ page_title|e }}{% endif %}
+        {% if page_title %}{{ page_title|e }}{% endif %} - {{ blog_title|e }}
         {% endblock %}
     </title>
 {% endblock html_head %}
@@ -36,7 +36,7 @@ ul#recent_posts {
 
 <body>
     <header>
-    {% if page_title %}<h1>{{ page_title|e }}</h1>{% endif %}
+    <h1>{% if blog_title %}{{ blog_title|e }} {% else %} Just Another Blog{% endif %}</h1>
     </header>
 
     <section id="content"> 

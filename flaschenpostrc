@@ -1,0 +1,11 @@
+# This is the default config for Flaschenpost.
+
+# REMOVE THIS BEFORE RUNNING FLASCHENPOST ANYWHERE EXCEPT LOCALHOST!
+DEBUG = True
+
+# Where the posts will be located.
+POST_DIR = "."
+# The title of the blog.
+BLOG_TITLE = "Just Another Blog"
+
+# vim:ft=python:

@@ -14,7 +14,9 @@ from flask import Flask, abort, render_template
 from asciidocapi import AsciiDocAPI, AsciiDocError
 
 site = Flask(__name__)
-site.config.from_object(__name__)
+# TODO: proper config file handling
+site.config.from_pyfile("flaschenpostrc", silent=True)
+
 
 asciidoc = AsciiDocAPI()
 
@@ -38,8 +40,9 @@ def index():
 @site.route("/post/")
 def serve_post_index():
     dir = site.config.get("POST_DIR", ".")
+    title = site.config.get("BLOG_TITLE", "Just Another Blog")
     return render_template("post_index.html", posts=index_posts(dir),
-                           recent_posts=recent_posts())
+                           recent_posts=recent_posts(), blog_title=title)
 
 
 @site.route("/post/<title>")
@@ -58,4 +61,4 @@ def serve_post(title):
 
 
 if __name__ == "__main__":
-    site.run(debug=True)
+    site.run()
